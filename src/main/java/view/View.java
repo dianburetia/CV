@@ -1,128 +1,118 @@
 package view;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.EventQueue;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionListener;
-
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JTable;
 public class View extends JFrame{
-        private JFrame frame;
-        private JTextField textField,textField1;
-        private JButton Adunare;
-        private JButton Inmultire;
-        private JButton Scadere;
-        private  JLabel Title,pol2;
-        private JButton Egal;
-        private JButton Derivare;
-        private JButton Integrare;
-        private JButton Impartire;
-        private JLabel Rezultat;
-    private JLabel Introduceti;
-    public  View() {
-            this.setBounds(100, 100, 1079, 547);
+
+        private JTextField textField;
+        private JTextField textField_1;
+        private JTable table;
+        private JLabel id;
+        private JLabel nume;
+        private JTextField textField_2;
+        private JLabel lblNewLabel;
+    private JButton buttonAdaugare;
+    private JButton buttonStergere;
+    private JButton buttonEditare;
+    private JButton btnAfisareListaDe;
+    private JFrame FrameAfisareTabela;
+        public  View() {
+
+            this.setBounds(100, 100, 1071, 668);
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.getContentPane().setLayout(null);
 
-            Title = new JLabel("Calculator polinomial");
-            Title.setFont(new Font("Tahoma", Font.PLAIN, 25));
-            Title.setBounds(398, 23, 233, 46);
-            this.getContentPane().add(Title);
+             id = new JLabel("ID:");
+            id.setFont(new Font("Tahoma", Font.PLAIN, 18));
+            id.setBounds(28, 54, 55, 22);
+            this.getContentPane().add(id);
+
+             nume = new JLabel("Nume:");
+            nume.setFont(new Font("Tahoma", Font.PLAIN, 18));
+            nume.setBounds(22, 99, 73, 33);
+            this.getContentPane().add(nume);
 
             textField = new JTextField();
-            textField.setFont(new Font("Tahoma", Font.PLAIN, 17));
-            textField.setBounds(36, 199, 255, 63);
+            textField.setBounds(120, 59, 96, 19);
             this.getContentPane().add(textField);
             textField.setColumns(10);
 
-             Adunare = new JButton("Adunare");
-            Adunare.setFont(new Font("Tahoma", Font.PLAIN, 16));
-            Adunare.setBounds(516, 148, 115, 35);
-            this.getContentPane().add(Adunare);
+            textField_1 = new JTextField();
+            textField_1.setBounds(120, 109, 96, 19);
+            this.getContentPane().add(textField_1);
+            textField_1.setColumns(10);
 
-             Inmultire = new JButton("Inmultire");
-            Inmultire.setFont(new Font("Tahoma", Font.PLAIN, 17));
-            Inmultire.setBounds(516, 227, 115, 35);
-            this.getContentPane().add(Inmultire);
+             buttonAdaugare = new JButton("Adaugare client");
+            buttonAdaugare.setFont(new Font("Tahoma", Font.PLAIN, 18));
+            buttonAdaugare.setBounds(346, 53, 199, 25);
+            this.getContentPane().add(buttonAdaugare);
 
-             Scadere = new JButton("Scadere");
-            Scadere.setFont(new Font("Tahoma", Font.PLAIN, 17));
-            Scadere.setBounds(745, 148, 121, 35);
-            this.getContentPane().add(Scadere);
+             buttonStergere = new JButton("Stergere client");
+            buttonStergere.setFont(new Font("Tahoma", Font.PLAIN, 18));
+            buttonStergere.setBounds(346, 108, 199, 25);
+            this.getContentPane().add(buttonStergere);
 
-             Impartire = new JButton("Impartire");
-            Impartire.setFont(new Font("Tahoma", Font.PLAIN, 17));
-            Impartire.setBounds(751, 227, 115, 35);
-            this.getContentPane().add(Impartire);
+           buttonEditare = new JButton("Editare client");
+            buttonEditare.setFont(new Font("Tahoma", Font.PLAIN, 18));
+            buttonEditare.setBounds(57, 157, 199, 25);
+            this.getContentPane().add(buttonEditare);
 
-             Derivare = new JButton("Derivare");
-            Derivare.setFont(new Font("Tahoma", Font.PLAIN, 17));
-            Derivare.setBounds(516, 313, 115, 36);
-            this.getContentPane().add(Derivare);
+             btnAfisareListaDe = new JButton("Afisare lista de clienti");
+            btnAfisareListaDe.setFont(new Font("Tahoma", Font.PLAIN, 18));
+            btnAfisareListaDe.setBounds(728, 157, 230, 25);
+            this.getContentPane().add(btnAfisareListaDe);
+            textField_2 = new JTextField();
+            textField_2.setBounds(862, 59, 96, 19);
+            this.getContentPane().add(textField_2);
+            textField_2.setColumns(10);
 
-             Integrare = new JButton("Integrare");
-            Integrare.setFont(new Font("Tahoma", Font.PLAIN, 17));
-            Integrare.setBounds(750, 317, 110, 35);
-            this.getContentPane().add(Integrare);
+             lblNewLabel = new JLabel("Adresa:");
+            lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+            lblNewLabel.setBounds(701, 62, 85, 13);
+            this.getContentPane().add(lblNewLabel);
+            this.setVisible(true);
 
-             Introduceti = new JLabel("Introduceti un polinom");
-            Introduceti.setFont(new Font("Tahoma", Font.PLAIN, 14));
-            Introduceti.setBounds(104, 126, 156, 36);
-            this.getContentPane().add(Introduceti);
-
-             Egal = new JButton("Egal");
-            Egal.setFont(new Font("Tahoma", Font.PLAIN, 18));
-            Egal.setBounds(624, 417, 134, 46);
-            this.getContentPane().add(Egal);
-
-            textField1 = new JTextField();
-            textField1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-            textField1.setBounds(46, 417, 245, 62);
-            this.getContentPane().add(textField1);
-            textField1.setColumns(10);
-
-         pol2 = new JLabel("Introduceti al doilea polinom\r\n");
-        pol2.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        pol2.setBounds(46, 303, 215, 57);
-        this.getContentPane().add(pol2);
-        this.setVisible(true);
         }
-    public void addAdunareListener(ActionListener action) {
-        Adunare.addActionListener(action);
+    public void addAdaugareListener(ActionListener action) {
+        buttonAdaugare.addActionListener(action);
     }
-    public void addInmultireListener(ActionListener action) {
-        Inmultire.addActionListener(action);
+    public void addEditareListener(ActionListener action) {
+        buttonEditare.addActionListener(action);
     }
-    public void addScadereListener(ActionListener action) {
-        Scadere.addActionListener(action);
+    public void addStergereListener(ActionListener action) {
+        buttonStergere.addActionListener(action);
     }
-    public void addImpartireListener(ActionListener action) {
-        Impartire.addActionListener(action);
+    public void addVeziListener(ActionListener action) {
+        btnAfisareListaDe.addActionListener(action);
     }
-    public void addDerivareListener(ActionListener action) {
-        Derivare.addActionListener(action);
+    public String getTextIdClient(){
+        return textField.getText();
     }
-    public void addIntegrareListener(ActionListener action) {
-        Integrare.addActionListener(action);
+    public String getTextClient(){
+        return textField_1.getText();
     }
-    public void addEgalListener(ActionListener action) {
-        Egal.addActionListener(action);
-    }
-    public String getText11(){
-            return textField.getText();
-    }
-    public void setText11(){
-        textField.setText("");
-    }
-    public String getText22(){
-        return textField1.getText();
-    }
-    public void setText22(){
-        textField1.setText("");
-    }
-    public void showMessage(String message) {
-        JOptionPane.showMessageDialog(this, message);
+    public String getTextAdresa(){return textField_2.getText();}
+    public void setTextJTable(Object[][] data,Object column[]){
+        FrameAfisareTabela = new JFrame();
+        FrameAfisareTabela.setTitle("Afisare tabel");
+        table = new JTable(data, column);
+        table.setBounds(57, 620, 880, -363);
+        this.getContentPane().add(table);
+        this.setVisible(true);
+        JScrollPane sp = new JScrollPane(table);
+        FrameAfisareTabela.add(sp);
+        FrameAfisareTabela.setSize(500, 200);
+        FrameAfisareTabela.setVisible(true);
+
 
     }
-
 }
