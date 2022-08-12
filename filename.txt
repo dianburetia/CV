@@ -1,0 +1,3 @@
+Perioada medie de asteptare in cazul listei generate e de:2.5
+
+Secunda maxima este: 24
