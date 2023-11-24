@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  database:
+    image: postgres:latest
+    container_name: postgres-container
+    environment:
+      POSTGRES_DB: tema1SD
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: parola
+    ports:
+      - "5433:5432"
+  app:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    container_name: your_docker_image
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/tema1SD
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: parola
+    ports:
+     - "8091:8091"
+    volumes:
+      - ./target:/app

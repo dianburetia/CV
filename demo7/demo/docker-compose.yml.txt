@@ -1,0 +1,29 @@
+version: '3'
+services:
+  # PostgreSQL Database
+  database:
+    image: postgres:latest
+    container_name: postgres-container
+    environment:
+      POSTGRES_DB: tema1SD
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: parola
+    ports:
+      - "5432:5432"
+
+  # Your Python application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: your-app-container
+    depends_on:
+      - database
+    environment:
+      POSTGRES_HOST: database
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: tema1SD
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: parola
+    volumes:
+	- .:/app
