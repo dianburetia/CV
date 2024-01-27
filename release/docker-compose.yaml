@@ -1,0 +1,92 @@
+version: '3'
+
+services:
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.12-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ./rabbitmq-data/:/var/lib/rabbitmq/mnesia/
+  database-clients:
+    image: postgres:latest
+    container_name: database-clients
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: parola
+    ports:
+      - "5433:5432"
+  app-clients:
+    build:
+      context: ../clients
+      dockerfile: ./Dockerfile
+    container_name: app-clients
+    environment:
+      POSTGRES_HOST: database-clients
+      POSTGRES_DATABASE: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: parola
+    ports:
+     - "8081:8080"
+    depends_on:
+     - database-clients
+  database-devices:
+    image: postgres:latest
+    container_name: database-devices
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: parola
+    ports:
+      - "5434:5432"
+  app-devices:
+    build:
+      context: ../devices
+      dockerfile: ./Dockerfile
+    container_name: app-devices
+    environment:
+      POSTGRES_HOST: database-devices
+      POSTGRES_DATABASE: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: parola
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USERNAME: guest
+      RABBITMQ_PASSWORD: guest
+    ports:
+     - "8082:8080"
+    depends_on:
+     - database-devices
+     - rabbitmq
+  database-energy:
+    image: postgres:latest
+    container_name: database-energy
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: parola
+    ports:
+      - "5435:5432"
+  app-energy:
+    build:
+      context: ../energy
+      dockerfile: ./Dockerfile
+    container_name: app-energy
+    environment:
+      POSTGRES_HOST: database-devices
+      POSTGRES_DATABASE: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: parola
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USERNAME: guest
+      RABBITMQ_PASSWORD: guest
+    ports:
+     - "8083:8080"
+    depends_on:
+     - database-energy
+     - rabbitmq
+    
+
